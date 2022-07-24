@@ -47,3 +47,4 @@ playstore1_apps,big_playstore_apps,apps_from_apps_data,android_games_apps]).drop
 dictonary_app=dictonary_app.to_dict() 
 dictonary_app = {value:key for (key,value) in dictonary_app.items()} #replacing the key and values order
 
+
