@@ -11,24 +11,17 @@ from sklearn.tree import DecisionTreeClassifier
 import sklearn.metrics as metrics
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
+plt.style.use("ggplot")
 
-# plt.style.use("ggplot")
 
-'''
-OR: parameter name should be descriptive, instead of x use "file_name"
-'''
-def read_file(x):
+def read_file(file_name):
     try:
-        return pd.read_csv(x)
-        print("Loaded")
+        return pd.read_csv(file_name)
+        
     except:
         return "Eror"
-
-'''
-OR: x.value_counts() assumes that x is dataframe, should be called "df" or relative name
-'''
-def app_list(x):
-    return pd.Series(x.value_counts().index)
+def app_list(df):
+    return pd.Series(df.value_counts().index)
 
 #reading files
 user_reviews=read_file("user_reviews.csv")
@@ -39,7 +32,6 @@ playstore1=read_file("playstore1.csv")
 big_playstore=read_file("big_playstore.csv")      
 apps=read_file("apps.csv")
 android_games=read_file("android-games.csv")
-
 #extracting apps columns 
 user_reviews_apps=app_list(user_reviews["App"])
 top_apps_colum=app_list(top_apps["App Name"])
