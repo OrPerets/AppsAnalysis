@@ -32,20 +32,24 @@ playstore1=read_file("playstore1.csv")
 big_playstore=read_file("big_playstore.csv")      
 apps=read_file("apps.csv")
 android_games=read_file("android-games.csv")
-#extracting apps columns 
-user_reviews_apps=app_list(user_reviews["App"])
-top_apps_colum=app_list(top_apps["App Name"])
-reviews_apps=app_list(reviews["appId"])
-playstore2_apps=app_list(playstore2["App"])
-playstore1_apps=app_list(playstore1["App"])
-big_playstore_apps=app_list(big_playstore["App Name"])
-apps_from_apps_data=app_list(apps["title"])
-android_games_apps=app_list(android_games["title"])
 
-dictonary_app=pd.concat([user_reviews_apps,top_apps_colum,reviews_apps,playstore2_apps,playstore2_apps, 
-playstore1_apps,big_playstore_apps,apps_from_apps_data,android_games_apps]).drop_duplicates(keep="first").reset_index(drop=True) #creating a series containing all apps names without duplicates
+#creating a series containing all apps names without duplicates
+dictonary_app=pd.concat([user_reviews["App"],top_apps["App Name"],reviews["appId"],playstore2["App"],playstore1["App"], 
+big_playstore["App Name"],apps["title"],android_games["title"]]).drop_duplicates(keep="first").reset_index(drop=True) 
 
-dictonary_app=dictonary_app.to_dict() 
+dictonary_app=dictonary_app.to_dict() #turning the pandas Series to a dictonary
 dictonary_app = {value:key for (key,value) in dictonary_app.items()} #replacing the key and values order
 
+#adding a new app ID column for each DataFrame 
+def App_Id_Seal(df,df_app_column):
+    df["app_id_new"]=df_app_column.astype(str).map(dictonary_app)
+
+App_Id_Seal(user_reviews,user_reviews["App"])
+App_Id_Seal(top_apps,top_apps["App Name"])
+App_Id_Seal(reviews,reviews["appId"])
+App_Id_Seal(playstore1,playstore1["App"])
+App_Id_Seal(playstore2,playstore2["App"])
+App_Id_Seal(big_playstore,big_playstore["App Name"])
+App_Id_Seal(apps,apps["title"])
+App_Id_Seal(android_games,android_games["title"])
 
