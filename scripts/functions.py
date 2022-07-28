@@ -13,7 +13,7 @@ import os
 from os.path import isfile, join
 
 FILES_PATH = os.path.join(os.getcwd(), "data-sources")
-print(FILES_PATH)
+# print(FILES_PATH)
 
 def read_csv_file(data_name):  # reads data from a file (returns the file as a dataframe)
     try:
