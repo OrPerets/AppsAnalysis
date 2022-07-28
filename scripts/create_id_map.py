@@ -11,7 +11,7 @@ from sklearn.tree import DecisionTreeClassifier
 import sklearn.metrics as metrics
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-plt.style.use("ggplot")
+# plt.style.use("ggplot")
 
 
 def read_file(file_name):
