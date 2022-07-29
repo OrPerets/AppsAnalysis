@@ -12,6 +12,7 @@ import sklearn.metrics as metrics
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 import os
+from functools import reduce
 
 # plt.style.use("ggplot")
 
@@ -66,4 +67,10 @@ App_Id_Seal(android_games,android_games["title"])
 '''
 ADD MAP TO DW
 '''
-print(dictonary_app)
+#merging all the data files into one
+data_frames = [user_reviews,reviews,playstore2,playstore1,apps,android_games]
+df_merged = reduce(lambda  left,right: pd.merge(left,right,on=['app_id_new'],
+                                            how='outer'), data_frames)
+                                        
+pd.DataFrame.to_csv(df_merged, 'mergedData.csv', sep=',', na_rep='.', index=False)
+
