@@ -13,7 +13,7 @@ module.exports = {
             const client = new MongoClient(connectionString, { useUnifiedTopology: true });
             await client.connect();
             _db = client.db(table);
-            _item = _db.collection(collection);
+            _items = _db.collection(collection);
             console.log('Connected to mongo!!!');
 
         } catch (err) {
@@ -35,6 +35,6 @@ module.exports = {
     },
     getFirstTen: (callback) => {
         return _items.find({}).limit(10).toArray(callback);
-    }
+    },
 };
 
