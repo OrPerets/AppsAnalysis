@@ -1,17 +1,9 @@
-import numpy as np
 import pandas as pd
 import os
-import matplotlib.pyplot as plt
-File_Path=os.path.join(os.getcwd(), "data-warehouse")
+from variables import *
+from functions import read_file
 
-def read_file(file_name):
-    try:
-        return pd.read_excel(file_name)
-        
-    except:
-        return "Error"
-
-file_name = os.path.join(File_Path, "Installs.xlsx")
+file_name = os.path.join(FILE_PATH, "Installs.xlsx")
 installs = read_file(file_name)
 print("Number of Rows:", installs.shape[0])
 print("Number of Columns:", installs.shape[1])
