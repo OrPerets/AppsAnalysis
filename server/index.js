@@ -1,6 +1,7 @@
 const express = require('express')
-var { connectToDb,getFirstTen,getAllItems } = require('./db');
-var cors = require("cors");
+const { connectToDb,getFirstTen,getAllItems } = require('./db');
+const cors = require("cors");
+const getData = require('./fetch.js');
 
 
 const app = express();
@@ -104,6 +105,16 @@ app.get('/app1' , async (req,res) => {
     }
 })
 })
+
+// the fetch code start here, x will be the developer name.
+const x = 'spotify developer country'
+
+app.get('/search' , async (req,res) => {
+  const data = await getData(`https://google-search3.p.rapidapi.com/api/v1/search/q=${x}`)
+  res.send(data)
+})
+// 
+
 
 
 app.all('*',(req,res) => {
