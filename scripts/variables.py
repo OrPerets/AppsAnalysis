@@ -1,3 +1,3 @@
 import os 
 
-FILE_PATH=os.path.join(os.getcwd(), "data-warehouse")
+FILE_PATH = os.path.join(os.getcwd(), "data-warehouse")
