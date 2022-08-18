@@ -1,10 +1,12 @@
 import pandas as pd
 import os
+from variables import *
+from functions import read_file
 
-FILES_PATH = os.path.join(os.getcwd(), "data-warehouse")
-FILE_NAME =  os.path.join(FILES_PATH, "Reviews.xlsx")
+file_name = os.path.join(FILE_PATH, "Rating.xlsx")
+REVIEWS =  os.path.join(FILE_PATH, "Reviews.xlsx")
 
-data = pd.read_excel(FILE_NAME)
+data = read_file(REVIEWS)
 
 data.drop(columns=["No_reviews_count","Reviews_present_count"], inplace=True)
 
@@ -21,17 +23,10 @@ print(data["Reviews_Number"].describe(percentiles=None))
 print("Average review sentiment polarity:",data["Sentiment_Polarity"].mean()) 
 
 # Checking the amount of good, medium, and bad reviews
-'''
-OR: this part is not exploration (you are quering the dataset) so should be remove for now / add to comment
-'''
-print("Number of good reviews:",data.loc[data['Sentiment_Polarity'] >= 0.3 , 'Sentiment_Polarity'].count())
-print("Number of medium reviews:",data.loc[(data['Sentiment_Polarity'] < 0.3) & (data['Sentiment_Polarity'] >= 0), 'Sentiment_Polarity'].count())
-print("Number of bad reviews:",data.loc[data['Sentiment_Polarity'] < 0 , 'Sentiment_Polarity'].count())
-print("Id of app with maximum reviews number:",data["Reviews_Number"].idxmax())
-print("Id of app with the best review rating:",data["Sentiment_Polarity"].idxmax())
+# print("Number of good reviews:",data.loc[data['Sentiment_Polarity'] >= 0.3 , 'Sentiment_Polarity'].count())
+# print("Number of medium reviews:",data.loc[(data['Sentiment_Polarity'] < 0.3) & (data['Sentiment_Polarity'] >= 0), 'Sentiment_Polarity'].count())
+# print("Number of bad reviews:",data.loc[data['Sentiment_Polarity'] < 0 , 'Sentiment_Polarity'].count())
+# print("Id of app with maximum reviews number:",data["Reviews_Number"].idxmax())
+# print("Id of app with the best review rating:",data["Sentiment_Polarity"].idxmax())
 
 # This is not accurate - prints the line number and not the actual app ID
-
-'''
-OR: missing handling duplicate values 
-'''
