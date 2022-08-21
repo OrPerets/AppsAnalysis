@@ -3,6 +3,9 @@ const { connectToDb,getFirstTen,getAllItems } = require('./db');
 const cors = require("cors");
 const getData = require('./fetch.js');
 
+/**
+ * OR: using "fetch.js" may cause problems because "feature" is word in JavaScript. change the file name
+ */
 
 const app = express();
 app.use(express.json());
@@ -107,16 +110,19 @@ app.get('/app1' , async (req,res) => {
 })
 
 // the fetch code start here, x will be the developer name.
+/**
+ * OR: move constant variable to other file, such as "consts.js"
+ */
 const x = 'spotify developer country'
 
 app.get('/search' , async (req,res) => {
   const data = await getData(`https://google-search3.p.rapidapi.com/api/v1/search/q=${x}`)
   res.send(data)
 })
-// 
 
-
-
+/**
+ * OR: what is this route?
+ */
 app.all('*',(req,res) => {
   res.status(404).send('resource not found')
 })
