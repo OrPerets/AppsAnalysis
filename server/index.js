@@ -1,7 +1,7 @@
 const express = require('express')
 const { connectToDb,getFirstTen,getAllItems } = require('./db');
 const cors = require("cors");
-const getData = require('./fetch.js');
+const getData = require('./fetchData.js');
 
 /**
  * OR: using "fetch.js" may cause problems because "feature" is word in JavaScript. change the file name
@@ -122,6 +122,7 @@ app.get('/search' , async (req,res) => {
 
 /**
  * OR: what is this route?
+ * Lotan : Handling undefine routes 
  */
 app.all('*',(req,res) => {
   res.status(404).send('resource not found')
