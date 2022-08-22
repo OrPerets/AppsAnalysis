@@ -120,10 +120,6 @@ app.get('/search' , async (req,res) => {
   res.send(data)
 })
 
-/**
- * OR: what is this route?
- * Lotan : Handling undefine routes 
- */
 app.all('*',(req,res) => {
   res.status(404).send('resource not found')
 })
