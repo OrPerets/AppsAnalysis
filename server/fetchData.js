@@ -10,6 +10,7 @@ const options = {
 	}
 };
 
+// Google search
 const getData = async (url) => {
     try {
         const data = await fetch(url,options)
@@ -18,5 +19,8 @@ const getData = async (url) => {
         console.log(err);
     }
 }
+
+// Wikipedia search
+
 
 module.exports = getData
