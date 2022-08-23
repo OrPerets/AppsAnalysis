@@ -2,15 +2,15 @@ const express = require('express')
 const { connectToDb,getFirstTen,getAllItems } = require('./db');
 const cors = require("cors");
 const getData = require('./fetchData.js');
-
-/**
- * OR: using "fetch.js" may cause problems because "feature" is word in JavaScript. change the file name
- */
-
 const app = express();
 app.use(express.json());
 app.use(cors());
 
+// SERVER URL - https://app-server-three.vercel.app/
+/**
+ * Every change in the server:
+ * terminal -- run "vercel --prod"
+ */
 app.get('/', (req, res) => {
   res.send("Apps Server.")
 });
