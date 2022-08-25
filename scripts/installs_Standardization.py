@@ -11,4 +11,5 @@ numerical_cols=installs.select_dtypes(exclude=["object"]).columns
 installs.drop(columns=["Unnamed: 0"],inplace=True)  # Removing Unnamed column
 print(installs.isna().sum())
 installs=installs.drop_duplicates(keep="first",ignore_index=True ) # Removing rows with duplicate values
+installs.to_excel("Installs_3.0.xlsx")
 print(installs)
