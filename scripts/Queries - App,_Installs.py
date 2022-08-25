@@ -6,11 +6,17 @@ from variables import *
 from functions import read_file
 import matplotlib.pyplot as plt
 
+'''
+OR: define the variables in "variables.py" and import them here
+'''
 file_name = os.path.join(FILE_PATH, "Installs.xlsx")
 installs = read_file(file_name)
 file_name = os.path.join(FILE_PATH, "Apps.xlsx")
 apps=read_file(file_name)
 
+'''
+OR: it is problemic to print the tables, they are huge..
+'''
 print(installs)
 print(apps)
 
@@ -22,6 +28,10 @@ merged_df.isna().sum()
 merged_df.dropna(inplace=True)
 
 #Queries:
+'''
+OR: I think it would be better to separate between the queries and the plots.
+For example, first print 10 queries and then plot the figures
+'''
 print("1. Installs Average:",merged_df["Installs"].mean())
 print("2.",float(merged_df["Price"].value_counts(normalize=True).head(1)*100),"%", "of all apps, are free")
 print("3. Number of apps with the most installs is:",merged_df[merged_df["Installs"]==merged_df["Installs"].max()].shape[0])

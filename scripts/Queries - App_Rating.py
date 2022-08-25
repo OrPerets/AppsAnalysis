@@ -5,17 +5,27 @@ import os
 from variables import *
 from functions import read_file
 
+'''
+OR: define the variables in "variables.py" and import them here
+'''
 file_name = os.path.join(FILE_PATH, "Rating.xlsx")
 rating = read_file(file_name)
 file_name = os.path.join(FILE_PATH, "Apps.xlsx")
 apps=read_file(file_name)
 
+'''
+OR: it is problemic to print the tables, they are huge..
+'''
 print(rating)
 print(apps)
 
 apps.drop(columns=["Unnamed: 0"],inplace=True)
 rating.drop(columns=["Unnamed: 0","Thumbs_Up_Count"],inplace=True)
 merged_df=pd.merge(apps,rating,on="App_Id")
+
+'''
+OR: remove unused comments
+'''
 #print(merged_df.isna().sum())
 merged_df.dropna(inplace=True)
 merged_df=merged_df.drop(merged_df[merged_df["Geners"]=="."].index)
