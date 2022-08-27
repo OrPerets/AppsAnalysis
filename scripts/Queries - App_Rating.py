@@ -7,7 +7,6 @@ from functions import read_file
 
 rating = read_file(file_name_Rating)
 apps=read_file(file_name_Apps)
-
 apps.drop(columns=["Unnamed: 0"],inplace=True)
 rating.drop(columns=["Unnamed: 0","Thumbs_Up_Count"],inplace=True)
 merged_df=pd.merge(apps,rating,on="App_Id")
