@@ -49,14 +49,25 @@ print("Number of bad reviews:",reviews_app_merge.loc[reviews_app_merge['Sentimen
 print("Name of app with maximum reviews number:" , reviews_app_merge[['App_name']][reviews_app_merge.Reviews_Number == reviews_app_merge.Reviews_Number.max()])
 print("Name of app with minimum reviews number:" , reviews_app_merge[['App_name']][reviews_app_merge.Reviews_Number == reviews_app_merge.Reviews_Number.min()])
 
-print("Name of app with best review rating:" , reviews_app_merge[['App_name']][reviews_app_merge.Sentiment == reviews_app_merge.Sentiment.mean().max()])
-# ^^^ Need help with this ^^^
+max_sentiment = reviews_app_merge["Sentiment"].max()
+print("Name of app with best review rating:" , reviews_app_merge[reviews_app_merge["Sentiment"] == max_sentiment]["App_name"])
 
 # New column = positive/negative based on the sentiment column:
 reviews_app_merge["Verbal Sentiment"]=reviews_app_merge["Sentiment"].apply(lambda x: 'Positive' if x>0 else 'Negative')
 
+print("---")
+print(reviews_app_merge["Verbal Sentiment"].value_counts())
+print("---")
+
+'''
+In visual studio, after "hist" we need to add "show"
+'''
+
 print(reviews_app_merge.groupby("Verbal Sentiment")["Price"].mean().hist()) # See how the price affects the reviews
+plt.show()
 print(reviews_app_merge.groupby("Geners")["Price"].mean().hist()) # See which Genres tend to be more expensive
+plt.show()
+
 # ^^^ Need help with these - not running properly ^^^
 
 print("Positive reviews vs negative reviews:")
