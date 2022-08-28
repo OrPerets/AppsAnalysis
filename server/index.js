@@ -1,12 +1,12 @@
 const express = require('express')
-const { connectToDb,getFirstTen,getAllItems } = require('./db');
+const { connectToDb,getFirstFiveThousand,getAllItems } = require('./db');
 const cors = require("cors");
 const getData = require('./fetchData.js');
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// SERVER URL - https://app-server-three.vercel.app/
+// SERVER URL - https://appsanalysis.vercel.app 
 /**
  * Every change in the server:
  * terminal -- run "vercel --prod"
@@ -16,11 +16,9 @@ app.get('/', (req, res) => {
 });
 
 
-// Lotan: Right now for the testing, I am using the function that return only the first ten, to get all the data simply change to getAllItems. each route is getting the data of specific collection.
-
 app.get('/app7' , async (req,res) => {
     await connectToDb('Applications', 'apps_7')
-    getFirstTen((err,values) => {
+    getFirstFiveThousand((err,values) => {
       if (err) {
         res.send(err)
       } 
@@ -33,7 +31,7 @@ app.get('/app7' , async (req,res) => {
 
 app.get('/app6' , async (req,res) => {
   await connectToDb('Applications', 'apps_6')
-  getFirstTen((err,values) => {
+  getFirstFiveThousand((err,values) => {
     if (err) {
       res.send(err)
     } 
@@ -46,7 +44,7 @@ app.get('/app6' , async (req,res) => {
 
 app.get('/app5' , async (req,res) => {
   await connectToDb('Applications', 'apps_5')
-  getFirstTen((err,values) => {
+  getFirstFiveThousand((err,values) => {
     if (err) {
       res.send(err)
     } 
@@ -59,7 +57,7 @@ app.get('/app5' , async (req,res) => {
 
 app.get('/app4' , async (req,res) => {
   await connectToDb('Applications', 'apps_4')
-  getFirstTen((err,values) => {
+  getFirstFiveThousand((err,values) => {
     if (err) {
       res.send(err)
     } 
@@ -72,7 +70,7 @@ app.get('/app4' , async (req,res) => {
 
 app.get('/app3' , async (req,res) => {
   await connectToDb('Applications', 'apps_3')
-  getFirstTen((err,values) => {
+  getFirstFiveThousand((err,values) => {
     if (err) {
       res.send(err)
     } 
@@ -85,7 +83,7 @@ app.get('/app3' , async (req,res) => {
 
 app.get('/app2' , async (req,res) => {
   await connectToDb('Applications', 'apps_2')
-  getFirstTen((err,values) => {
+  getFirstFiveThousand((err,values) => {
     if (err) {
       res.send(err)
     } 
@@ -98,7 +96,7 @@ app.get('/app2' , async (req,res) => {
 
 app.get('/app1' , async (req,res) => {
   await connectToDb('Applications', 'apps_1')
-  getFirstTen((err,values) => {
+  getFirstFiveThousand((err,values) => {
     if (err) {
       res.send(err)
     } 
