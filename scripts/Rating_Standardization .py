@@ -11,5 +11,6 @@ categorical_cols=rating.select_dtypes(include=["object"]).columns
 numerical_cols=rating.select_dtypes(exclude=["object"]).columns
 rating.drop(columns=["Unnamed: 0"],inplace=True)
 Rating=rating.drop_duplicates(keep="first",ignore_index=True)
+Rating.to_excel("Rating_3.0.xlsx")
 print(Rating)
 

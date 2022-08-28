@@ -37,3 +37,4 @@ apps.drop(columns=["App_Name_1","App_Name_2","App_Name_3","App_Name_4"],inplace=
 apps=apps.reindex(columns=["App_Id","App_name","Price","Geners","Category"]) #orginazing columns order
 apps=apps.reset_index(drop=True)
 print(apps)
+apps.to_excel("Apps_3.0.xlsx")
