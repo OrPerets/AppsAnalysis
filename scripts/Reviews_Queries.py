@@ -53,8 +53,9 @@ app_groups=reviews_app_merge.groupby("App_name")["Sentiment"].mean()
 print("Apps by their review rating average:",app_groups.sort_values(ascending=False))
 
 '''
-max_sentiment = reviews_app_merge["Sentiment"].max()
-print("Name of app with best review rating:" , reviews_app_merge[reviews_app_merge["Sentiment"] == max_sentiment]["App_name"])
+mean_sentiment = reviews_app_merge.groupby("App_name")["Sentiment"].mean()
+max_sentiment = mean_sentiment.max()
+print("Name of app with best review rating:" , mean_sentiment[mean_sentiment == max_sentiment])
 
 '''
 
