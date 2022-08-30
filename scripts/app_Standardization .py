@@ -31,6 +31,7 @@ apps["App_name"]=apps[["App_Name_1","App_Name_2","App_Name_3","App_Name_4"]].app
                             else x.values[2] if x.values[2]==x.values[3] and x.values[0]=="." and x.values[1]=="." #columns 2,3  
                             else x.values[0] if x.values[0]==x.values[1] and x.values[0] == x.values[2] and x.values[0] == x.values[3]  #columns 0,1,2,3  
                             else np.nan ,axis=1) 
+
 print("Misiing values in App name column:",apps["App_name"].isna().sum())
 apps.dropna(axis=0,inplace=True) #dropping Nan Values
 apps.drop(columns=["App_Name_1","App_Name_2","App_Name_3","App_Name_4"],inplace=True) #Dropping the initial app name columns
