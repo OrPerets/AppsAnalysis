@@ -16,5 +16,3 @@ apps.drop(columns=["Unnamed: 0"],inplace=True)  # Removing Unnamed column
 print(apps.isna().sum())
 apps=apps.drop_duplicates(keep="first",ignore_index=True ) # Removing rows with duplicate values
 
-
-
