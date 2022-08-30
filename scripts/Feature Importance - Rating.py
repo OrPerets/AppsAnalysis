@@ -17,9 +17,9 @@ rating["Rating"]=rating["Rating"].apply(lambda x: 1 if x<=1 else
 
 merged_df=pd.merge(apps,rating,on="App_Id")
 merged_df.drop(columns=["Unnamed: 0_x","Unnamed: 0_y"],inplace=True)
+
 le_geners = preprocessing.LabelEncoder()
 merged_df["Geners"] = le_geners.fit_transform(merged_df["Geners"])
-
 le_category = preprocessing.LabelEncoder()
 merged_df["Category"] = le_category.fit_transform(merged_df["Category"])
 

@@ -16,7 +16,6 @@ merged_df.drop(columns=["Unnamed: 0_x","Unnamed: 0_y"],inplace=True)
 
 le_geners = preprocessing.LabelEncoder()
 merged_df["Geners"] = le_geners.fit_transform(merged_df["Geners"])
-
 le_category = preprocessing.LabelEncoder()
 merged_df["Category"] = le_category.fit_transform(merged_df["Category"])
 
