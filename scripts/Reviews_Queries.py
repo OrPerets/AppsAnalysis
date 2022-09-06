@@ -4,7 +4,7 @@ import os
 from variables import *
 from functions import read_file
 from Reviews_exploration import data
-from app_exploration import apps
+from apps_exploration import apps
 import matplotlib.pyplot as plt 
 import numpy as np
 
@@ -38,6 +38,8 @@ reviews_app_merge["App_name"]=reviews_app_merge[["App_Name_1","App_Name_2","App_
                             else np.nan ,axis=1)
 
 reviews_app_merge.drop(columns=["App_Name_1","App_Name_2","App_Name_3","App_Name_4"],inplace=True) #Dropping the initial app name columns
+
+print(reviews_app_merge.head())
 
 # QUERIES :
 
