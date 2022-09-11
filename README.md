@@ -1,7 +1,7 @@
 # AppsAnalysis
 A data analysis project for mobile applications and its uses
 
-** Add Lotan's part ( Ask for in which phase to add it )
+** Add Lotan's part ( Ask for in which phase to add it ) **
 
 ## Phase 1:
 Choose a dataset and a research question
