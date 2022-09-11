@@ -31,7 +31,14 @@ module.exports = {
         });
         return 200
     },
-
+    addManyItems: (items) => {
+        _items.insertMany(items, {}, function (err, docs) {
+            if (err) {
+                return 500
+            }
+        });
+        return 200
+    },
     getAllItems: (callback) => {
         return _items.find({}).toArray(callback);
     },

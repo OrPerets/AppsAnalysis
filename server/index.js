@@ -1,21 +1,20 @@
 const express = require('express')
-const { connectToDb,getFirstFiveThousand,getAllItems, } = require('./db');
+const { connectToDb,getFirstFiveThousand,getAllItems, addManyItems} = require('./db');
 const cors = require("cors");
 const { searchGoogle,getCountriesList }= require('./fetchData.js');
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// SERVER URL - https://appsanalysis.vercel.app 
+// SERVER URL - https://appsanalysis.vercel.app
 /**
- * Every change in the server:
- * terminal -- run "vercel --prod"
- */
+ * Table = AppsAnalysis
+ * Collections = App, Installs, Rating, Reviews
+ *  */ 
 
 app.get('/', (req, res) => {
   res.send("Apps Server.")
 });
-
 
 app.get('/search/:value' , async (req,res) => {
   // usage example: http://127.0.0.1:8000/search/spotify country
@@ -23,7 +22,6 @@ app.get('/search/:value' , async (req,res) => {
   console.log(data)
   res.send(data)
 })
-
 
 app.get('/getItems/:collectionId/:k' , async (req,res) => {
   // usage example: http://127.0.0.1:8000/getItems/7/100   --> return 100 items from apps_7
@@ -40,7 +38,6 @@ app.get('/getItems/:collectionId/:k' , async (req,res) => {
     }
 })
 })
-
 
 // get all countries
 app.get('/countries',async (req,res) => {
