@@ -3,7 +3,7 @@ import os
 from variables import *
 from functions import read_file
 
-file_name = os.path.join(FILE_PATH, "App.xlsx")
+file_name = os.path.join(FILE_PATH, "Apps.xlsx")
 apps = read_file(file_name)
 print("Number of Rows:", apps.shape[0])
 print("Number of Columns:", apps.shape[1])
