@@ -1,26 +1,23 @@
 import pandas as pd
-import os
+import numpy as np
 from variables import *
 from functions import read_file
 
-file_name = os.path.join(FILE_PATH, "Rating.xlsx")
-REVIEWS =  os.path.join(FILE_PATH, "Reviews.xlsx")
 
-data = read_file(REVIEWS)
+reviews = read_file(file_name_Reviews)
 
-data.drop(columns=["No_reviews_count","Reviews_present_count"], inplace=True)
+reviews.drop(columns=["No_reviews_count","Reviews_present_count","Unnamed: 0"], inplace=True)
+print("There are", reviews.shape[0], "rows, and", reviews.shape[1], "columns.")
+print("The columns in the Reviews table are:", reviews.columns)
+print("The column types are:",reviews.dtypes)
 
-print("There are", data.shape[0], "rows, and", data.shape[1], "columns.")
-print("The columns in the Reviews table are:", data.columns)
-print("The column types are:",data.dtypes)
-
-print(data.isna().sum()) # There is no missing data
+print(reviews.isna().sum()) # There is no missing data
 
 print("Information regarding the number of reviews:") 
 # Not accurate, each has a recurring total number of reviews
 
-print(data["Reviews_Number"].describe(percentiles=None))
-print("Average review sentiment polarity:",data["Sentiment_Polarity"].mean()) 
+print(reviews["Reviews_Number"].describe(percentiles=None))
+print("Average review sentiment polarity:",reviews["Sentiment_Polarity"].mean()) 
 
 # Checking the amount of good, medium, and bad reviews
 # print("Number of good reviews:",data.loc[data['Sentiment_Polarity'] >= 0.3 , 'Sentiment_Polarity'].count())
