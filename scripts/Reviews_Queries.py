@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from variables import *
 from functions import read_file
-from Reviews_exploration import data
+from reviews_exploration import data
 from apps_exploration import apps
 import matplotlib.pyplot as plt 
 import numpy as np
