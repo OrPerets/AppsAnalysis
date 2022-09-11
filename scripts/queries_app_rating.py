@@ -32,10 +32,11 @@ print("8. Conclusion from the graph: Paid apps have a high rating score, no less
 print("9. Conclusion from the graph: Of all apps that have the highest Rating score (5.0), apps that belongs to family category, appears the most.")
 print("10. Conclusion from the graph: Of al apps that have the lowest Rating score (1.0), apps that belongs to medical,family and tools geners, appears the most.")
 
-merged_df.plot.scatter(x='Rating', y="Price", title="Rating & Price")
-plt.show()     
-merged_df[merged_df["Rating"]==merged_df["Rating"].max()]["Category"].value_counts().plot(kind="bar",title="Categories Popularity For Apps With Maximum Rating")
-plt.show()     
-merged_df[merged_df["Rating"]==merged_df["Rating"].min()]["Category"].value_counts().plot(kind="pie",autopct="%1.2f%%",title="Categories Popularity For Apps With Minimun Rating")
-plt.show()     
+## Graphs for future plotting
+# merged_df.plot.scatter(x='Rating', y="Price", title="Rating & Price")
+# plt.show()     
+# merged_df[merged_df["Rating"]==merged_df["Rating"].max()]["Category"].value_counts().plot(kind="bar",title="Categories Popularity For Apps With Maximum Rating")
+# plt.show()     
+# merged_df[merged_df["Rating"]==merged_df["Rating"].min()]["Category"].value_counts().plot(kind="pie",autopct="%1.2f%%",title="Categories Popularity For Apps With Minimun Rating")
+# plt.show()     
 

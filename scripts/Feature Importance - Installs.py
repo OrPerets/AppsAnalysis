@@ -8,8 +8,8 @@ from functions import read_file
 from sklearn.ensemble import RandomForestRegressor
 from sklearn import preprocessing
 
-installs= read_file(file_name_Installs)
 apps=read_file(file_name_Apps)
+installs=read_file(file_name_Installs)
 
 merged_df=pd.merge(apps,installs,on="App_Id")
 merged_df.drop(columns=["Unnamed: 0_x","Unnamed: 0_y"],inplace=True)

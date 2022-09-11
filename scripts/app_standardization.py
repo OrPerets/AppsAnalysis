@@ -4,8 +4,8 @@ import os
 from variables import *
 from functions import read_file
 
-file_name = os.path.join(FILE_PATH, "App.xlsx")
-apps = read_file(file_name)
+#file_name = os.path.join(FILE_PATH, "App.xlsx")
+apps = read_file(file_name_Apps)
 categorical_cols=apps.select_dtypes(include=["object"]).columns
 numerical_cols=apps.select_dtypes(exclude=["object"]).columns
 apps.drop(columns=["Unnamed: 0"],inplace=True)  # Removing Unnamed column
@@ -38,4 +38,4 @@ apps.drop(columns=["App_Name_1","App_Name_2","App_Name_3","App_Name_4"],inplace=
 apps=apps.reindex(columns=["App_Id","App_name","Price","Geners","Category"]) #orginazing columns order
 apps=apps.reset_index(drop=True)
 print(apps)
-apps.to_excel("Apps_3.0.xlsx")
+#apps.to_excel("Apps_3.0.xlsx")
