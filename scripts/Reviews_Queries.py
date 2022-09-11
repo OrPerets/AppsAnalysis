@@ -3,6 +3,8 @@ import pandas as pd
 import os
 from variables import *
 from functions import read_file
+from reviews_exploration import data
+from apps_exploration import apps
 import matplotlib.pyplot as plt 
 import numpy as np
 
@@ -19,7 +21,31 @@ print(merged_df["Sentiment"].describe())
 
 merged_df.dropna(inplace=True)
 
-# # QUERIES :
+# QUERIES :
+=======
+reviews_app_merge = pd.merge(apps, data, on= "App_Id")
+reviews_app_merge.dropna(inplace=True)
+
+condition=reviews_app_merge[(reviews_app_merge["App_Name_1"]==".") &(reviews_app_merge["App_Name_2"]==".") & (reviews_app_merge["App_Name_3"]==".") & (reviews_app_merge["App_Name_4"]==".")]
+reviews_app_merge = reviews_app_merge.drop(condition.index)  #dropping rows that all 4 App_name column doesnt contains values
+
+
+reviews_app_merge["App_name"]=reviews_app_merge[["App_Name_1","App_Name_2","App_Name_3","App_Name_4"]].apply(lambda x:
+                            x.values[0] if x.values[0]==x.values[1] and x.values[2]=="." and x.values[3]=="." #column 0,1
+                            else x.values[0] if x.values[0]==x.values[2] and x.values[1]=="." and x.values[3]=="." #column 0,2
+                            else x.values[0] if x.values[0]==x.values[3] and x.values[1]=="." and x.values[2]=="." #column 0,3
+                            else x.values[0] if x.values[0]==x.values[1] and x.values[0]==x.values[2] and x.values[3]=="." #column 0,1,2
+                            else x.values[0] if x.values[0]==x.values[2] and x.values[0]==x.values[3] and x.values[1]=="." #columns 0,2,3
+                            else x.values[1] if x.values[1]==x.values[2] and x.values[0]=="." and x.values[3]=="." #columns 1,2
+                            else x.values[1] if x.values[1]==x.values[3] and x.values[0]=="." and x.values[0]=="." #columns 1,3
+                            else x.values[1] if x.values[1]==x.values[2] and x.values[1]==x.values[3] and x.values[0]=="." #columns 1,2,3  
+                            else x.values[2] if x.values[2]==x.values[3] and x.values[0]=="." and x.values[1]=="." #columns 2,3  
+                            else x.values[0] if x.values[0]==x.values[1] and x.values[0] == x.values[2] and x.values[0] == x.values[3]  #columns 0,1,2,3  
+                            else np.nan ,axis=1)
+
+reviews_app_merge.drop(columns=["App_Name_1","App_Name_2","App_Name_3","App_Name_4"],inplace=True) #Dropping the initial app name columns
+
+print(reviews_app_merge.head())
 
 # Checking the amount of good, mediocre, and bad reviews to see what's most common
 print("Number of good reviews:",merged_df.loc[merged_df['Sentiment_Polarity'] >= 0.3 , 'Sentiment_Polarity'].count())
