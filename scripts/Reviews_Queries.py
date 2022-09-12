@@ -3,20 +3,26 @@ import pandas as pd
 import os
 from variables import *
 from functions import read_file
-from Reviews_exploration import data
-from app_exploration import apps
+from reviews_exploration import data
+from apps_exploration import apps
 import matplotlib.pyplot as plt 
 import numpy as np
 
-print("*******************************")
+apps=read_file(file_name_Apps)
+reviews = read_file(file_name_Reviews)
 
-data.drop(columns=["Unnamed: 0"], inplace=True)
+apps.drop(columns=["Unnamed: 0"],inplace=True)
+reviews.drop(columns=["Unnamed: 0"],inplace=True)
+merged_df=pd.merge(apps,reviews,on="App_Id")
+print(merged_df["Sentiment_Polarity"].describe())
+print(merged_df["Sentiment"].describe())
 
-print(data["Sentiment_Polarity"].describe())
-print(data["Sentiment"].describe())
+# # As seen by the .describe - there are no outliers in the Reviews table
 
-# As seen by the .describe - there are no outliers in the Reviews table
+merged_df.dropna(inplace=True)
 
+# QUERIES :
+=======
 reviews_app_merge = pd.merge(apps, data, on= "App_Id")
 reviews_app_merge.dropna(inplace=True)
 
@@ -39,41 +45,33 @@ reviews_app_merge["App_name"]=reviews_app_merge[["App_Name_1","App_Name_2","App_
 
 reviews_app_merge.drop(columns=["App_Name_1","App_Name_2","App_Name_3","App_Name_4"],inplace=True) #Dropping the initial app name columns
 
-# QUERIES :
+print(reviews_app_merge.head())
 
 # Checking the amount of good, mediocre, and bad reviews to see what's most common
-print("Number of good reviews:",reviews_app_merge.loc[reviews_app_merge['Sentiment_Polarity'] >= 0.3 , 'Sentiment_Polarity'].count())
-print("Number of mediocre reviews:",reviews_app_merge.loc[(reviews_app_merge['Sentiment_Polarity'] < 0.3) & (reviews_app_merge['Sentiment_Polarity'] >= 0), 'Sentiment_Polarity'].count())
-print("Number of bad reviews:",reviews_app_merge.loc[reviews_app_merge['Sentiment_Polarity'] < 0 , 'Sentiment_Polarity'].count())
+print("Number of good reviews:",merged_df.loc[merged_df['Sentiment_Polarity'] >= 0.3 , 'Sentiment_Polarity'].count())
+print("Number of mediocre reviews:",merged_df.loc[(merged_df['Sentiment_Polarity'] < 0.3) & (merged_df['Sentiment_Polarity'] >= 0), 'Sentiment_Polarity'].count())
+print("Number of bad reviews:",merged_df.loc[merged_df['Sentiment_Polarity'] < 0 , 'Sentiment_Polarity'].count())
 
-print("Name of app with maximum reviews number:" , reviews_app_merge[['App_name']][reviews_app_merge.Reviews_Number == reviews_app_merge.Reviews_Number.max()])
-print("Name of app with minimum reviews number:" , reviews_app_merge[['App_name']][reviews_app_merge.Reviews_Number == reviews_app_merge.Reviews_Number.min()])
+print("Name of app with maximum reviews number:" , merged_df[['App_name']][merged_df.Reviews_Number == merged_df.Reviews_Number.max()])
+print("Name of app with minimum reviews number:" , merged_df[['App_name']][merged_df.Reviews_Number == merged_df.Reviews_Number.min()])
 
-app_groups=reviews_app_merge.groupby("App_name")["Sentiment"].mean()
+app_groups=merged_df.groupby("App_name")["Sentiment"].mean()
 print("Apps by their review rating average:",app_groups.sort_values(ascending=False))
 
-'''
-mean_sentiment = reviews_app_merge.groupby("App_name")["Sentiment"].mean()
+# '''
+mean_sentiment = merged_df.groupby("App_name")["Sentiment"].mean()
 max_sentiment = mean_sentiment.max()
 print("Name of app with best review rating:" , mean_sentiment[mean_sentiment == max_sentiment])
+# '''
 
-'''
-
-# New column = positive/negative based on the sentiment column:
-reviews_app_merge["Verbal Sentiment"]=reviews_app_merge["Sentiment"].apply(lambda x: 'Positive' if x>0 else 'Negative')
-
-print(reviews_app_merge.groupby("Verbal Sentiment")["Price"].mean().plot(kind="bar",legend=True, title="Price effect on sentiment")) # See how the price affects the reviews
-plt.show()
-
-# See which Genres tend to be more expensive:
-print(reviews_app_merge.groupby("Geners")["Price"].mean().plot(kind="barh"))
-plt.show()
+# # New column = positive/negative based on the sentiment column:
+merged_df["Verbal Sentiment"]=merged_df["Sentiment"].apply(lambda x: 'Positive' if x>0 else 'Negative')
 
 print("Positive reviews vs negative reviews:")
-print(reviews_app_merge["Verbal Sentiment"].value_counts())
+print(merged_df["Verbal Sentiment"].value_counts())
 print()
-print("Top 3 most common genre:",reviews_app_merge["Geners"].value_counts().head(3))
-print("Top 3 most common category:", reviews_app_merge["Category"].value_counts().head(3))
+print("Top 3 most common genre:",merged_df["Geners"].value_counts().head(3))
+print("Top 3 most common category:", merged_df["Category"].value_counts().head(3))
 
 print("Conclusions:")
 print()
@@ -82,4 +80,11 @@ print("2. Facebook has the most reviews - as expected big apps have more reviews
 print("3. On average, people tend to rate apps in the middle between bad and good, and they usually don't rate badly")
 print("4. There are almost 6 times positive reviews vs negative reviews")
 print("5. Apps with positive sentiment have a higher price")
+print(merged_df.groupby("Verbal Sentiment")["Price"].mean().plot(kind="bar",legend=True, title="Price effect on sentiment")) # See how the price affects the reviews
 
+## Graphs for future plotting
+#plt.show()
+
+# # See which Genres tend to be more expensive:
+print(merged_df.groupby("Geners")["Price"].mean().plot(kind="barh"))
+#plt.show()
