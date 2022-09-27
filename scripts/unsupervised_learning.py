@@ -11,7 +11,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn import preprocessing
 from sklearn import metrics
 
-
+print("reading data..")
 unsupervised_df = pd.read_csv(learning_data)
 
 unsupervised_df.drop(columns=["Unnamed: 0"],inplace=True)
@@ -20,7 +20,7 @@ unsupervised_df.drop(columns=["Unnamed: 0"],inplace=True)
 
 # print(unsupervised_df.select_dtypes(include=["object"]).columns) #Category is the only categorial column
 # print(unsupervised_df.select_dtypes(exclude=["object"]).columns)
-
+print("covert to dummies..")
 unsupervised_df.drop(unsupervised_df[unsupervised_df['Category'] =='.'].index, inplace=True)
 unsupervised_dummy=pd.get_dummies(unsupervised_df)
 
@@ -41,6 +41,8 @@ def get_kmeans_accuracy(data, top_k):
     "SSE": sum_squared,
     "SIL": silhouette
   })
+
+print("Running KMEANS..")
 result=get_kmeans_accuracy(unsupervised_dummy,20)  
 result.set_index("K", inplace=True)  
 # print(result.plot(subplots=True))
