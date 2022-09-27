@@ -1,6 +1,9 @@
 import pandas as pd
 import os
 from functools import reduce
+import numpy as np
+import json
+import requests
 
 
 FILES_PATH = os.path.join(os.getcwd(), "data-warehouse")
@@ -16,5 +19,9 @@ def read_table(file_name):
     except:
         # empty DF
         return pd.DataFrame()
+
+def fetchData(name):
+    response = requests.get('https://appsanalysis.vercel.app/getItems/'+name)
+    return response.json()
 
 
