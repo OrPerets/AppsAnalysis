@@ -43,8 +43,8 @@ module.exports = {
         return _items.find({}).toArray(callback);
     },
 
-    getFirstFiveThousand: (callback) => {
-        return _items.find({}).limit(5000).toArray(callback);
+    getFirstTen: (callback) => {
+        return _items.find({}).limit(10).toArray(callback);
     },
     
 };
