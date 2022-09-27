@@ -22,7 +22,6 @@ print(merged_df["Sentiment"].describe())
 merged_df.dropna(inplace=True)
 
 # QUERIES :
-=======
 reviews_app_merge = pd.merge(apps, data, on= "App_Id")
 reviews_app_merge.dropna(inplace=True)
 
