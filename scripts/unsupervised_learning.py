@@ -1,4 +1,5 @@
 import re
+from unittest import result
 import pandas as pd
 import numpy as np
 import os
@@ -11,16 +12,15 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn import preprocessing
 from sklearn import metrics
 
-print("reading data..")
 unsupervised_df = pd.read_csv(learning_data)
 
 unsupervised_df.drop(columns=["Unnamed: 0"],inplace=True)
 
-# print(unsupervised_df.isna().sum()) # There is no missing data
+print(unsupervised_df.isna().sum()) # There is no missing data
 
-# print(unsupervised_df.select_dtypes(include=["object"]).columns) #Category is the only categorial column
-# print(unsupervised_df.select_dtypes(exclude=["object"]).columns)
-print("covert to dummies..")
+print(unsupervised_df.select_dtypes(include=["object"]).columns) #Category is the only categorial column
+print(unsupervised_df.select_dtypes(exclude=["object"]).columns)
+
 unsupervised_df.drop(unsupervised_df[unsupervised_df['Category'] =='.'].index, inplace=True)
 unsupervised_dummy=pd.get_dummies(unsupervised_df)
 
@@ -42,11 +42,20 @@ def get_kmeans_accuracy(data, top_k):
     "SIL": silhouette
   })
 
-print("Running KMEANS..")
-result=get_kmeans_accuracy(unsupervised_dummy,20)  
-result.set_index("K", inplace=True)  
-# print(result.plot(subplots=True))
-print("STARTED")
-# print(result)
+kmeans_file = os.path.join(FILE_PATH, "SSE.xlsx")
+result = read_file(kmeans_file) 
 
-print("FINISHED")
+result.set_index("K", inplace=True)  
+print(result.plot())
+plt.show()
+
+kmeans=KMeans(n_clusters=10)
+kmeans.fit(unsupervised_dummy)
+unsupervised_dummy["Cluster"]=kmeans.labels_  
+
+unsupervised_df.to_excel("unsupervised_df.xlsx")
+unsupervised_dummy.to_excel("unsupervised_dummy.xlsx")
+
+unsupervised_dummy.groupby("Cluster").describe().T.to_excel("results.xlsx") # Add to normalized data
+
+unsupervised_df.groupby("Cluster").describe().T.to_excel("results2.xlsx") # Add to original data
