@@ -1,6 +1,4 @@
-import numpy as np
 import pandas as pd
-import os
 from variables import *
 from functions import read_file
 import matplotlib.pyplot as plt

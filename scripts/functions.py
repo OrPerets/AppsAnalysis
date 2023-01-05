@@ -7,9 +7,6 @@ def read_file(file_name):
     except:
         return "Error"
 
-# reads the data from all of the files and adds the data into a dictionary
-# key is the file's name, value is the dataframe
-
 def read_all_datas(data_name_list):   
     files = {}
     for data_name in data_name_list:
