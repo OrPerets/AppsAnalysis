@@ -1,14 +1,9 @@
-import re
 import pandas as pd
-import os
 from variables import *
-from functions import read_file
 from apps_exploration import apps
 import matplotlib.pyplot as plt 
-import numpy as np
 from Reviews_exploration import data as reviews
 from sklearn.model_selection import train_test_split
-from heapq import merge
 from sklearn.ensemble import RandomForestRegressor
 from sklearn import preprocessing
 
@@ -39,4 +34,3 @@ plt.xticks(range(x_train.shape[1]), x_train.columns,rotation=90)
 plt.xlim([-1, x_train.shape[1]])
 plt.show() 
 
-# If the target is the price, we will choose to use the Reviews Number column

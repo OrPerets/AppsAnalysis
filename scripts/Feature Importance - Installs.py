@@ -1,5 +1,3 @@
-from heapq import merge
-import numpy as np 
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -7,6 +5,7 @@ from variables import *
 from functions import read_file
 from sklearn.ensemble import RandomForestRegressor
 from sklearn import preprocessing
+from sklearn import metrics
 
 apps=read_file(file_name_Apps)
 installs=read_file(file_name_Installs)

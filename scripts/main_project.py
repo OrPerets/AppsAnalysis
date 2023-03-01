@@ -40,3 +40,5 @@ dfs = [
 
 data = ft.reduce(lambda left, right: pd.merge(left, right, on='App_Id'), dfs)
 data.to_csv("learning_data.csv")
+
+
