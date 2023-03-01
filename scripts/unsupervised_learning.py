@@ -1,16 +1,11 @@
-import re
 from unittest import result
 import pandas as pd
-import numpy as np
 import os
 from variables import *
 from functions import read_file
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt 
 from sklearn.metrics import silhouette_score
-from sklearn.preprocessing import MinMaxScaler
-from sklearn import preprocessing
-from sklearn import metrics
 
 unsupervised_df = pd.read_csv(learning_data)
 

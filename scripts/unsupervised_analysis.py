@@ -25,12 +25,3 @@ plt.show()
 
 
 print("FINISHED")
-
-# Conclusions: 
-
-# free apps recieve higher sentiment and paid apps recieve lower sentiment rating
-# People react to free apps in a positive manner
-
-# Reviews in cluster 8 contain apps with a neutral review - not affecting the sentiment ( Sentiment is 0)
-# Reviews in cluster 5 vary from -1 to 1 ( As expected)
-
