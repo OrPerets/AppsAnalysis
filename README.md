@@ -1,18 +1,24 @@
 # AppsAnalysis
-A data analysis project for mobile applications and its uses
-Based on the CRISP-DM methodology
-
-** Add Lotan's part ( Ask for in which phase to add it ) **
-** Ask Or - in which phase to add the design? **
+A data analysis project for mobile applications and its uses based on the CRISP-DM methodology.
+This project includes:
+<ul>
+<li><strong>Backend</strong> - built with Node.js and MongoDB to store and manipulate the datasets.</li>
+<li><strong>Analysis</strong> - Full Exploratory Data Analysis (EDA).</li>
+<li><strong>Modeling</strong> - Data mining models evaluation.</li>
+</ul>
 
 ## Business understanding:
-What is the probability of an application in the google playstore to achieve success considering different varients.
+What is the probability of an application in the google playstore to achieve success considering different varients?
 
 ## Data understanding:
-Selecting relevant data from various datasources containing data of the apps in the google playstore
+Selecting relevant data from various datasources containing data of the apps in the google playstore.
+
+ADD MORE DESCRIPTION ABOUT THE DATA: tables and features
 
 ## Data preparation:
-Using star scheme design in order to decide which data to explore
+Using star scheme design in order to decide which data to explore.
+
+ADD SCEHMA
 
 ## Modeling:
 ### supervised learning in order to predict the success rate of an app based on price and rating.
@@ -34,7 +40,10 @@ Using star scheme design in order to decide which data to explore
 ## Evaluation:
 ** Conclusions?
 
-<img src="./figures/1.jpeg" alt="Alt text" title="Test">
+<img src="./figures/1.jpeg" alt="Alt text" title="Eyal 1">
+<img src="./figures/2.jpeg" alt="Alt text" title="Eyal 2">
+<img src="./figures/confusion.jpeg" alt="Alt text" title="Confusion Matrix">
+<img src="./figures/error-rate.jpeg" alt="Alt text" title="Error Rate">
 
 <!-- ## Phase 1:
 Choose a dataset and a research question
