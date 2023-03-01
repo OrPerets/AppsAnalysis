@@ -5,6 +5,7 @@ from variables import *
 from functions import read_file
 from sklearn.ensemble import RandomForestRegressor
 from sklearn import preprocessing
+from sklearn import metrics
 
 apps=read_file(file_name_Apps)
 installs=read_file(file_name_Installs)
