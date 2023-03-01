@@ -18,8 +18,6 @@ ADD MORE DESCRIPTION ABOUT THE DATA: tables and features
 ## Data preparation:
 Using star scheme design in order to decide which data to explore.
 
-ADD SCEHMA
-
 ## Modeling:
 
 ### (1) Supervised learning in order to predict the success rate of an app based on price:
@@ -46,7 +44,22 @@ ADD SCEHMA
 
 ### (3)
 
+<strong>Title to Image</strong>
 <img src="./figures/1.jpeg" alt="Alt text" title="Eyal 1">
+
+<strong>Title to Image</strong>
 <img src="./figures/2.jpeg" alt="Alt text" title="Eyal 2">
+
+<strong>Title to Image</strong>
 <img src="./figures/confusion.jpeg" alt="Alt text" title="Confusion Matrix">
+
+<strong>Title to Image</strong>
 <img src="./figures/error-rate.jpeg" alt="Alt text" title="Error Rate">
+
+# Conclusions: 
+
+# free apps recieve higher sentiment and paid apps recieve lower sentiment rating
+# People react to free apps in a positive manner
+
+# Reviews in cluster 8 contain apps with a neutral review - not affecting the sentiment ( Sentiment is 0)
+# Reviews in cluster 5 vary from -1 to 1 ( As expected)
