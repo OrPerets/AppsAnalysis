@@ -34,6 +34,8 @@ Using star scheme design in order to decide which data to explore
 ## Evaluation:
 ** Conclusions?
 
+<img src="./figures/1.jpeg" alt="Alt text" title="Test">
+
 <!-- ## Phase 1:
 Choose a dataset and a research question
 Decide on a design for the project
