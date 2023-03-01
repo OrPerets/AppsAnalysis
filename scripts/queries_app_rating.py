@@ -1,7 +1,4 @@
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import os
 from variables import *
 from functions import read_file
 
@@ -31,12 +28,5 @@ list(merged_df[merged_df["5 Star ratings"]==merged_df["5 Star ratings"].max()]["
 print("8. Conclusion from the graph: Paid apps have a high rating score, no less then 3.0")
 print("9. Conclusion from the graph: Of all apps that have the highest Rating score (5.0), apps that belongs to family category, appears the most.")
 print("10. Conclusion from the graph: Of al apps that have the lowest Rating score (1.0), apps that belongs to medical,family and tools geners, appears the most.")
-
-## Graphs for future plotting
-# merged_df.plot.scatter(x='Rating', y="Price", title="Rating & Price")
-# plt.show()     
-# merged_df[merged_df["Rating"]==merged_df["Rating"].max()]["Category"].value_counts().plot(kind="bar",title="Categories Popularity For Apps With Maximum Rating")
-# plt.show()     
-# merged_df[merged_df["Rating"]==merged_df["Rating"].min()]["Category"].value_counts().plot(kind="pie",autopct="%1.2f%%",title="Categories Popularity For Apps With Minimun Rating")
-# plt.show()     
+    
 
