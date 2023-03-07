@@ -14,7 +14,7 @@ What is the probability of an application in the google playstore to achieve suc
 Selecting relevant data from various datasources containing data of the apps in the google playstore.
 
 <strong>Inital design scheme</strong>
-<img src="./figures/design-scheme.jpg" alt="Alt text" title="Design Scheme">
+<img src="./figures/design-scheme.jpeg" alt="Alt text" title="Design Scheme">
 
 ## Data preparation:
 Using star scheme design in order to decide which data to explore.
