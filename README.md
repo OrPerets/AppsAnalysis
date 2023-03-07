@@ -13,7 +13,8 @@ What is the probability of an application in the google playstore to achieve suc
 ## Data understanding:
 Selecting relevant data from various datasources containing data of the apps in the google playstore.
 
-ADD MORE DESCRIPTION ABOUT THE DATA: tables and features
+<strong>Inital design scheme</strong>
+<img src="./figures/design-scheme.png" alt="Alt text" title="Design Scheme">
 
 ## Data preparation:
 Using star scheme design in order to decide which data to explore.
@@ -38,28 +39,25 @@ Using star scheme design in order to decide which data to explore.
 
 ## Evaluation and Conclusions:
 
-### (1)
+<strong>Sentiment in relation to price</strong>
+<img src="./figures/1.jpeg" alt="Alt text" title="Price">
+- Free apps recieve higher sentiment and paid apps recieve lower sentiment rating
+- People react to free apps in a positive manner
 
-### (2)
+<strong>Sentiment in relation to reviews</strong>
+<img src="./figures/2.jpeg" alt="Alt text" title="Reviews number">
+- Reviews in cluster 8 contain apps with a neutral review - not affecting the sentiment ( Sentiment is 0)
+- Reviews in cluster 5 vary from -1 to 1 ( As expected)
 
-### (3)
-
-<strong>Title to Image</strong>
-<img src="./figures/1.jpeg" alt="Alt text" title="Eyal 1">
-
-<strong>Title to Image</strong>
-<img src="./figures/2.jpeg" alt="Alt text" title="Eyal 2">
-
-<strong>Title to Image</strong>
+<strong>Rating prediction</strong>
 <img src="./figures/confusion.jpeg" alt="Alt text" title="Confusion Matrix">
 
-<strong>Title to Image</strong>
+- Rating 1/2: Not enough data in order for the algorithm to model by
+- Rating 3: Prediction rate of 76%
+- Rating 4: Prediction rate of 91%
+- Rating 5: Prediction rate of 55%
+
+<strong>Error rate vs K value</strong>
 <img src="./figures/error-rate.jpeg" alt="Alt text" title="Error Rate">
 
-# Conclusions: 
-
-# free apps recieve higher sentiment and paid apps recieve lower sentiment rating
-# People react to free apps in a positive manner
-
-# Reviews in cluster 8 contain apps with a neutral review - not affecting the sentiment ( Sentiment is 0)
-# Reviews in cluster 5 vary from -1 to 1 ( As expected)
+- K=3 has the lowest error rate
