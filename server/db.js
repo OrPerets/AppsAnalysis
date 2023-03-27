@@ -43,8 +43,8 @@ module.exports = {
         return _items.find({}).toArray(callback);
     },
 
-    getFirstTen: (callback) => {
-        return _items.find({}).limit(10).toArray(callback);
+    getNdata: (n,callback) => {
+        return _items.find({}).limit(n).toArray(callback);
     },
     
 };

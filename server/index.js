@@ -1,5 +1,5 @@
 const express = require('express')
-const { connectToDb,getAllItems, getFirstTen} = require('./db');
+const { connectToDb,getAllItems, getNdata} = require('./db');
 const cors = require("cors");
 const { searchGoogle,getCountriesList }= require('./fetchData.js');
 const app = express();
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 app.get('/getItems/:collectionId',async (req,res) => {
   let collection = req.params.collectionId
   await connectToDb('AppsAnalysis',collection)
-  getAllItems((err,value) => {
+  get((err,value) => {
     if (err) {
       res.send(err)
     } 
@@ -36,8 +36,8 @@ app.get('/getItems/:collectionId/:k' , async (req,res) => {
   // usage example: http://127.0.0.1:8000/getItems/7/100   --> return 100 items from apps_7
   let collection = req.params.collectionId
   let totalItems = Number(req.params.k)
-  await connectToDb('Applications', collection)
-  getFirstKElements(totalItems, (err,values) => {
+  await connectToDb('AppsAnalysis', collection)
+  getNdata(totalItems, (err,values) => {
     if (err) {
       res.send(err)
     } 
