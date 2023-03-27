@@ -1,5 +1,11 @@
 import pandas as pd
+import os
+from functools import reduce
+import numpy as np
+import json
+import requests
 from datetime import date
+
 
 def read_file(file_name):
     try:
@@ -29,6 +35,10 @@ def str_to_int(s):
 def get_year(yearDate):
     today = date.today()
     return today.year - yearDate
+
+def fetchData(name):
+    response = requests.get('https://appsanalysis.vercel.app/getItems/'+name)
+    return response.json()
 
 #Remove empty space
 def remove_space(w):

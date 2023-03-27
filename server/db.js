@@ -31,13 +31,20 @@ module.exports = {
         });
         return 200
     },
-
+    addManyItems: (items) => {
+        _items.insertMany(items, {}, function (err, docs) {
+            if (err) {
+                return 500
+            }
+        });
+        return 200
+    },
     getAllItems: (callback) => {
         return _items.find({}).toArray(callback);
     },
 
-    getFirstFiveThousand: (callback) => {
-        return _items.find({}).limit(5000).toArray(callback);
+    getNdata: (n,callback) => {
+        return _items.find({}).limit(n).toArray(callback);
     },
     
 };

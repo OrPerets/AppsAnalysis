@@ -11,7 +11,7 @@ const options = {
 };
 
 // Google search
-const getData = async (url) => {
+const searchGoogle = async (url) => {
     try {
         const data = await fetch(url,options)
         return data.json();
@@ -21,6 +21,14 @@ const getData = async (url) => {
 }
 
 // Wikipedia search
+const getCountriesList = async (url) => {
+	try {
+		const data = await fetch(url)
+		return data.json()
+	} catch (err) {
+		console.log(err);
+	}
+}
 
 
-module.exports = getData
+module.exports = {searchGoogle , getCountriesList}

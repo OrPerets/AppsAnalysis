@@ -1,37 +1,43 @@
 const express = require('express')
-const { connectToDb,getFirstFiveThousand,getAllItems } = require('./db');
+const { connectToDb,getAllItems, getNdata} = require('./db');
 const cors = require("cors");
-const getData = require('./fetchData.js');
+const { searchGoogle,getCountriesList }= require('./fetchData.js');
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// SERVER URL - https://appsanalysis.vercel.app 
+// SERVER URL - https://appsanalysis.vercel.app
 /**
- * Every change in the server:
- * terminal -- run "vercel --prod"
- */
+ * Table = AppsAnalysis
+ * Collections = App, Installs, Rating, Reviews
+ *  */ 
+
 app.get('/', (req, res) => {
   res.send("Apps Server.")
 });
 
-
-app.get('/app7' , async (req,res) => {
-    await connectToDb('Applications', 'apps_7')
-    getFirstFiveThousand((err,values) => {
-      if (err) {
-        res.send(err)
-      } 
-      else {
-        console.log('Success');
-        res.send(values)
-      }
+// Getting the data from a collection
+app.get('/getItems/:collectionId',async (req,res) => {
+  let collection = req.params.collectionId
+  await connectToDb('AppsAnalysis',collection)
+  get((err,value) => {
+    if (err) {
+      res.send(err)
+    } 
+    else {
+      console.log('Success');
+      res.send(value)
+    }
+  })
 })
-})
 
-app.get('/app6' , async (req,res) => {
-  await connectToDb('Applications', 'apps_6')
-  getFirstFiveThousand((err,values) => {
+// Getting from the big collection with selected number of data
+app.get('/getItems/:collectionId/:k' , async (req,res) => {
+  // usage example: http://127.0.0.1:8000/getItems/7/100   --> return 100 items from apps_7
+  let collection = req.params.collectionId
+  let totalItems = Number(req.params.k)
+  await connectToDb('AppsAnalysis', collection)
+  getNdata(totalItems, (err,values) => {
     if (err) {
       res.send(err)
     } 
@@ -42,84 +48,24 @@ app.get('/app6' , async (req,res) => {
 })
 })
 
-app.get('/app5' , async (req,res) => {
-  await connectToDb('Applications', 'apps_5')
-  getFirstFiveThousand((err,values) => {
-    if (err) {
-      res.send(err)
-    } 
-    else {
-      console.log('Success');
-      res.send(values)
-    }
-})
-})
-
-app.get('/app4' , async (req,res) => {
-  await connectToDb('Applications', 'apps_4')
-  getFirstFiveThousand((err,values) => {
-    if (err) {
-      res.send(err)
-    } 
-    else {
-      console.log('Success');
-      res.send(values)
-    }
-})
-})
-
-app.get('/app3' , async (req,res) => {
-  await connectToDb('Applications', 'apps_3')
-  getFirstFiveThousand((err,values) => {
-    if (err) {
-      res.send(err)
-    } 
-    else {
-      console.log('Success');
-      res.send(values)
-    }
-})
-})
-
-app.get('/app2' , async (req,res) => {
-  await connectToDb('Applications', 'apps_2')
-  getFirstFiveThousand((err,values) => {
-    if (err) {
-      res.send(err)
-    } 
-    else {
-      console.log('Success');
-      res.send(values)
-    }
-})
-})
-
-app.get('/app1' , async (req,res) => {
-  await connectToDb('Applications', 'apps_1')
-  getFirstFiveThousand((err,values) => {
-    if (err) {
-      res.send(err)
-    } 
-    else {
-      console.log('Success');
-      res.send(values)
-    }
-})
-})
-
-// the fetch code start here, x will be the developer name.
-/**
- * OR: move constant variable to other file, such as "consts.js"
- */
-const x = 'spotify developer country'
-
-app.get('/search' , async (req,res) => {
-  const data = await getData(`https://google-search3.p.rapidapi.com/api/v1/search/q=${x}`)
+// Searching google
+app.get('/search/:value' , async (req,res) => {
+  // usage example: http://127.0.0.1:8000/search/spotify country
+  const data = await searchGoogle(`https://google-search3.p.rapidapi.com/api/v1/search/q=${req.params.value}`)
+  console.log(data)
   res.send(data)
 })
 
+// get all countries
+app.get('/countries',async (req,res) => {
+  const data = await getCountriesList(`https://restcountries.com/v3.1/all`)
+  res.send(data)
+})
+
+
+// Handling false requests
 app.all('*',(req,res) => {
   res.status(404).send('resource not found')
 })
 
-app.listen(8000, () => console.log('server running on port', 8000));
+app.listen(3030, () => console.log('server running on port', 3030));
