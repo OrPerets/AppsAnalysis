@@ -1,18 +1,29 @@
 import pandas as pd
 import os
-from functools import reduce
-import numpy as np
-import json
 import requests
 from datetime import date
 
+SERVER_URL = "https://app-server-three.vercel.app"
 
 def read_file(file_name):
     try:
-        return pd.read_excel(file_name)
+        if os.environ["IS_PROD"]:
+            return fetch_data(file_name.split(".")[0])
     except:
+        try:
+            return pd.read_excel(file_name)
+        except:
+            return "Error"
+
+# in case of remote DB - retrieve the first 100 records of a given collection
+def fetch_data(collection, size=100):
+    try:
+        data = requests.get(SERVER_URL + "/getItems/" + collection + "/" + str(size))
+        return pd.DataFrame(data.json())
+    except Exception as e:
         return "Error"
 
+fetch_data("Rating")
 def read_all_datas(data_name_list):   
     files = {}
     for data_name in data_name_list:
@@ -31,14 +42,10 @@ def str_to_int(s):
             n += i
     return int(n)
 
-#Age to date convertor
+
 def get_year(yearDate):
     today = date.today()
     return today.year - yearDate
-
-def fetchData(name):
-    response = requests.get('https://appsanalysis.vercel.app/getItems/'+name)
-    return response.json()
 
 #Remove empty space
 def remove_space(w):

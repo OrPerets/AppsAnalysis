@@ -6,11 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// SERVER URL - https://appsanalysis.vercel.app
-/**
- * Table = AppsAnalysis
- * Collections = App, Installs, Rating, Reviews
- *  */ 
+// SERVER_URL: "https://app-server-three.vercel.app"
 
 app.get('/', (req, res) => {
   res.send("Apps Server.")
@@ -33,7 +29,6 @@ app.get('/getItems/:collectionId',async (req,res) => {
 
 // Getting from the big collection with selected number of data
 app.get('/getItems/:collectionId/:k' , async (req,res) => {
-  // usage example: http://127.0.0.1:8000/getItems/7/100   --> return 100 items from apps_7
   let collection = req.params.collectionId
   let totalItems = Number(req.params.k)
   await connectToDb('AppsAnalysis', collection)
@@ -47,21 +42,6 @@ app.get('/getItems/:collectionId/:k' , async (req,res) => {
     }
 })
 })
-
-// Searching google
-app.get('/search/:value' , async (req,res) => {
-  // usage example: http://127.0.0.1:8000/search/spotify country
-  const data = await searchGoogle(`https://google-search3.p.rapidapi.com/api/v1/search/q=${req.params.value}`)
-  console.log(data)
-  res.send(data)
-})
-
-// get all countries
-app.get('/countries',async (req,res) => {
-  const data = await getCountriesList(`https://restcountries.com/v3.1/all`)
-  res.send(data)
-})
-
 
 // Handling false requests
 app.all('*',(req,res) => {
