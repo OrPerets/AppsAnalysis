@@ -3,7 +3,7 @@ import os
 import requests
 from datetime import date
 
-SERVER_URL = "https://app-server-three.vercel.app"
+SERVER_URL = "https://appsanalysis.vercel.app"
 
 def read_file(file_name):
     try:
@@ -16,7 +16,7 @@ def read_file(file_name):
             return "Error"
 
 # in case of remote DB - retrieve the first 100 records of a given collection
-def fetch_data(collection, size=100):
+def fetch_data(collection, size=10000):
     try:
         data = requests.get(SERVER_URL + "/getItems/" + collection + "/" + str(size))
         return pd.DataFrame(data.json())
