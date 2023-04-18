@@ -5,6 +5,7 @@ from datetime import date
 
 SERVER_URL = "https://appsanalysis.vercel.app"
 
+# used to read the data files and check whether the project is running in a production environment. If it is, the function calls the fetch_data function to retrieve data from the remote database. Otherwise, the function reads the data directly from the local file.
 def read_file(file_name):
     try:
         if os.environ["IS_PROD"]:
@@ -15,7 +16,7 @@ def read_file(file_name):
         except:
             return "Error"
 
-# in case of remote DB - retrieve the first 100 records of a given collection
+# in case of remote DB - To reduce costs associated with remote database access, the backend retrieves only the first 10,000 records of a given collection when connected to a remote database.
 def fetch_data(collection, size=10000):
     try:
         data = requests.get(SERVER_URL + "/getItems/" + collection + "/" + str(size))
@@ -23,7 +24,8 @@ def fetch_data(collection, size=10000):
     except Exception as e:
         return "Error"
 
-fetch_data("Rating")
+print(fetch_data("Rating"))
+
 def read_all_datas(data_name_list):   
     files = {}
     for data_name in data_name_list:
