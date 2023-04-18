@@ -1,12 +1,11 @@
 const express = require('express')
-const { connectToDb,getAllItems, getNdata} = require('./db');
+const { connectToDb,getNdata} = require('./db');
 const cors = require("cors");
-const { searchGoogle,getCountriesList }= require('./fetchData.js');
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// SERVER_URL: "https://app-server-three.vercel.app"
+// SERVER_URL: "https://appsanalysis.vercel.app"
 
 app.get('/', (req, res) => {
   res.send("Apps Server.")

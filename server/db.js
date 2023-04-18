@@ -1,8 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
-var { dbUserName, dbPassword } = require('./config');
+require('dotenv').config()
 
-
-const connectionString = `mongodb+srv://${dbUserName}:${dbPassword}@apps.3mt9h.mongodb.net/?retryWrites=true&w=majority`
+const connectionString = `mongodb+srv://${process.env.dbUserName}:${process.env.dbPassword}@apps.3mt9h.mongodb.net/?retryWrites=true&w=majority`
 var _db;
 var _items;
 
@@ -23,25 +22,6 @@ module.exports = {
 
     connection: connectionString,
     getDb: () => {return _db;},
-    addItem: (item) => {
-        _items.insertOne(item, {}, function (err, doc) {
-            if (err) {
-                return 500
-            }
-        });
-        return 200
-    },
-    addManyItems: (items) => {
-        _items.insertMany(items, {}, function (err, docs) {
-            if (err) {
-                return 500
-            }
-        });
-        return 200
-    },
-    getAllItems: (callback) => {
-        return _items.find({}).toArray(callback);
-    },
 
     getNdata: (n,callback) => {
         return _items.find({}).limit(n).toArray(callback);
