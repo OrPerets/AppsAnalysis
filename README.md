@@ -25,7 +25,7 @@ Using star scheme design in order to decide which data to explore.
   <u>Continuous variable:</u>
 
   1. Random forest regressor
-  2. Linear rgression
+  2. Linear regression
 
 
 ### (2) Supervised learning in order to predict the success rate of an app based on rating:
@@ -61,7 +61,7 @@ Using star scheme design in order to decide which data to explore.
 <img src="./figures/error-rate.jpeg" alt="Alt text" title="Error Rate">
 
 - K=3 has the lowest error rate
-
+##
 ### Server:
 The backend of this project is built using the JavaScript programming language and the Express.js framework. It provides a secure and efficient API for storing and retrieving data, and it leverages MongoDB to perform CRUD operations on collections of data. The backend uses HTTP GET requests to communicate with the client-side, which is built using Python and the Pandas library.
 The project supports two environments - local and production. In the production environment, the backend uses MongoDB Atlas to store data in the cloud, while in the local environment, data is read directly from local files.
@@ -69,4 +69,6 @@ The project supports two environments - local and production. In the production 
 Server site - https://appsanalysis.vercel.app/
 
 <strong>JSON Example</strong>
+<br></br>
 <img src="./figures/JSON-example.png" alt="Alt text" title="JSON-example">
+
